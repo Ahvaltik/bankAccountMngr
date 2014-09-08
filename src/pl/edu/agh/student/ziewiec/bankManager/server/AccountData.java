@@ -5,33 +5,50 @@ import Bank.accountType;
 
 public class AccountData {
 
+	private float rateDecrease;
+	private int balance;
+	private String accountNumber;
+	private accountType type;
+	private PersonalData data;
+
 	public AccountData(PersonalData data, accountType type, String value) {
-		// TODO Auto-generated constructor stub
+		this.data = data;
+		this.type = type;
+		this.accountNumber = value;
+		balance = 1000;
+		setRateDecrease(0);
 	}
 
 	public void add(int amount) {
-		// TODO Auto-generated method stub
-		
+		balance += amount;
 	}
 
 	public void substract(int amount) {
-		// TODO Auto-generated method stub
-		
+		balance -= amount;
+	}
+	
+	public Bank.accountType getType() {
+		return type;
+	}
+	
+	public PersonalData getData() {
+		return data;
 	}
 
 	public int getBalance() {
-		// TODO Auto-generated method stub
-		return 0;
+		return balance;
 	}
 
 	public String getAccountNumber() {
-		// TODO Auto-generated method stub
-		return null;
+		return accountNumber;
 	}
 
-	public Object getAccountID() {
-		// TODO Auto-generated method stub
-		return null;
+	public float getRateDecrease() {
+		return rateDecrease;
+	}
+
+	public void setRateDecrease(float rateDecrease) {
+		this.rateDecrease = rateDecrease;
 	}
 
 }

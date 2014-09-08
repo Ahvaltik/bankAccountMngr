@@ -32,7 +32,7 @@ public class SerializationService {
 	public static void serialize(AccountData account) {
 		try {
 			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("serializedAccounts/"
-					+ account.getAccountID().toString()));
+					+ account.getAccountNumber()));
 			out.writeObject(account);
 			out.close();
 		} catch (IOException e) {

@@ -49,8 +49,8 @@ Ice.Trace.Network=2
 #
 # SSL Configuration
 #
-Ice.Plugin.IceSSL=IceSSL.PluginFactory
-IceSSL.DefaultDir=.
-IceSSL.Keystore=c.jks
-IceSSL.Password=sr2014
-IceSSL.Truststore=c.jks
+#Ice.Plugin.IceSSL=IceSSL.PluginFactory
+#IceSSL.DefaultDir=.
+#IceSSL.Keystore=c.jks
+#IceSSL.Password=sr2014
+#IceSSL.Truststore=c.jks

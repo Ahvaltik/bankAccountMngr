@@ -1,9 +1,11 @@
 package pl.edu.agh.student.ziewiec.bankManager.server;
 
+import java.io.Serializable;
+
 import Bank.PersonalData;
 import Bank.accountType;
 
-public class AccountData {
+public class AccountData implements Serializable {
 
 	private float rateDecrease;
 	private int balance;
@@ -20,10 +22,12 @@ public class AccountData {
 	}
 
 	public void add(int amount) {
+		//System.out.println(accountNumber+" +"+amount);
 		balance += amount;
 	}
 
 	public void substract(int amount) {
+		//System.out.println(accountNumber+" -"+Integer.toString(amount));
 		balance -= amount;
 	}
 	

@@ -35,7 +35,8 @@ public class EvictorImpl implements ServantLocator {
 			throws UserException {
 		EvictorImplMapEntry entry;
 		if((entry = evictorMap.get(curr.id)) != null){
-			entry.queuePos.remove();
+			//evictorMap.
+			//entry.queuePos.remove();
 		} else {
 			entry = new EvictorImplMapEntry();
 			LocalObjectHolder cookieHolder = new LocalObjectHolder();

@@ -25,7 +25,7 @@ public class PremiumAccountImpl extends _PremiumAccountDisp {
 	public void calculateLoan(int amount, currency curr, int period,
 			IntHolder totalCost, FloatHolder interestRate, Current __current)
 			throws IncorrectData {
-
+		this.account = SerializationService.deserialize(accountNumber);
 		interestRate.value = CurrencyMap.interestRate.get(curr.toString());
 		totalCost.value = (int)((amount * CurrencyMap.exchangeRate.get(curr.toString())) *(1 + interestRate.value));
 		totalCost.value -= totalCost.value *  this.account.getRateDecrease();
@@ -33,17 +33,20 @@ public class PremiumAccountImpl extends _PremiumAccountDisp {
 
 	@Override
 	public int getBalance(Current __current) {
+		this.account = SerializationService.deserialize(accountNumber);
 		return account.getBalance();
 	}
 
 	@Override
 	public String getAccountNumber(Current __current) {
+		this.account = SerializationService.deserialize(accountNumber);
 		return account.getAccountNumber();
 	}
 
 	@Override
 	public void transfer(String accountNumber, int amount, Current __current)
 			throws IncorrectAccountNumber, IncorrectAmount {
+		this.account = SerializationService.deserialize(accountNumber);
 		int senderBalance = account.getBalance();
 		if (amount > senderBalance || amount < 0)
 			throw new IncorrectAmount();

@@ -4,6 +4,7 @@ import Bank.IncorrectAccountNumber;
 import Bank.IncorrectAmount;
 import Bank._AccountDisp;
 import Ice.Current;
+import Ice.Identity;
 
 @SuppressWarnings("serial")
 public class AccountImpl extends _AccountDisp {
@@ -17,11 +18,13 @@ public class AccountImpl extends _AccountDisp {
 
 	@Override
 	public int getBalance(Current __current) {
+		this.account = SerializationService.deserialize(id);
 		return account.getBalance();
 	}
 
 	@Override
 	public String getAccountNumber(Current __current) {
+		this.account = SerializationService.deserialize(id);
 		return account.getAccountNumber();
 	}
 

@@ -31,8 +31,13 @@ public class SerializationService {
 
 	public static void serialize(AccountData account) {
 		try {
-			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("serializedAccounts/"
-					+ account.getAccountNumber()));
+			File file = new File("serializedAccounts/" + account.getAccountNumber());
+			File folder = new File("serializedAccounts");
+			if(!folder.exists())
+				folder.mkdir();
+			if(!file.exists())
+				file.createNewFile();
+			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file));
 			out.writeObject(account);
 			out.close();
 		} catch (IOException e) {

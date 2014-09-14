@@ -1,12 +1,12 @@
 import Ice
 import sys
-Ice.loadSlice("slice/Bank.ice")
+Ice.loadSlice("../../../../../../../../slice/Bank.ice")
 import Bank
 
 class Client(Ice.Application):
 	def run(self, args):
 		connection_line = ":tcp -h 127.0.0.1 -p 11000:ssl -h 172.7.7.1 -p 10001"
-		manager = Bank.BankManagerPrx.checkedCast(self.communicator().stringToProxy("bankManager/bankManager"+connectionString))
+		manager = Bank.BankManagerPrx.checkedCast(self.communicator().stringToProxy("bankManager/bankManager"+connection_line))
 		answer_line = ""
 		print("""quit
 		new

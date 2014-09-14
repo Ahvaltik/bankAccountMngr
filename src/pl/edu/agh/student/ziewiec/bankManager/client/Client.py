@@ -14,7 +14,8 @@ class Client(Ice.Application):
 	delete
 	balance
 	account number
-	transfer""")
+	transfer
+	calculate loan - (only PREMIUM)""")
 		
 		while answer_line.lower() != "quit" and answer_line != "q":
 			answer_line = raw_input(">>")

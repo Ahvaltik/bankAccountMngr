@@ -1,0 +1,6 @@
+- klient Python, jest zgodny z 2.7 i powinien byæ zgodny z 3.4
+- serwer Java
+- zmiana konfiguracji klienta w kodzie klienta - zmienna communication_line , nie w pliku config.client
+- brak zaimplemetowanego po³¹czenia z NewsServer
+- brak komunikacji z wykorzystaniem IceSSL
+- uruchamiane tylko dla sieci lokalnej

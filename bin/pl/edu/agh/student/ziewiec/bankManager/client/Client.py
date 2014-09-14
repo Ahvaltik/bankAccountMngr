@@ -51,7 +51,7 @@ class Client(Ice.Application):
 				account_1.transfer(account_2.getAccountNumber(), int(amount))
 			elif answer_line.lower() == "calculate loan" :
 				account_id = raw_input("Account ID : ")
-				account = Bank.AccountPrx.checkedCast(self.communicator().stringToProxy("account/" + str(account_id) + connection_line))
+				account = Bank.PremiumAccountPrx.checkedCast(self.communicator().stringToProxy("account/" + str(account_id) + connection_line))
 				amount = raw_input("Amount : ")
 				currency = raw_input("Currency : ")
 				if currency == "PLN":
@@ -59,7 +59,7 @@ class Client(Ice.Application):
 				elif currency == "USD":
 					curr_id = Bank.currency.USD
 				time = raw_input("Time : ")
-				(cost, interest_rate) = account.calculateLoan(int(amount), curr_id, int(period), None)
+				(cost, interest_rate) = account.calculateLoan(int(amount), curr_id, int(time), None)
 				print("Cost: " + str(cost) + " interest_rate: " + str(interest_rate))
 		return 0
 

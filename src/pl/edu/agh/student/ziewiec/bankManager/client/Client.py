@@ -5,21 +5,25 @@ import Bank
 
 class Client(Ice.Application):
 	def run(self, args):
-		connection_line = ":tcp -h 127.0.0.1 -p 11000:ssl -h 172.7.7.1 -p 10001"
+		connection_line = ":tcp -h 192.168.0.10 -p 11000"
 		manager = Bank.BankManagerPrx.checkedCast(self.communicator().stringToProxy("bankManager/bankManager"+connection_line))
 		answer_line = ""
-		print("""quit
-		new
-		delete
-		balance
-		account number
-		transfer""")
-		while answer_line.lower() != "quit" or answer_line != "q":
+		print("""Menu:
+	quit
+	new
+	delete
+	balance
+	account number
+	transfer""")
+		
+		while answer_line.lower() != "quit" and answer_line != "q":
+			answer_line = raw_input(">>")
+			print(".." + answer_line + "..")
 			if answer_line.lower() == "new" :
 				account_data = Bank.PersonalData()
 				account_data.firstName = raw_input("First name : ")
-				account_data.firstName = raw_input("First name : ")
-				dummy = raw_input("Account type [SILVER/PREMIUM]")
+				account_data.lastName = raw_input("Last name : ")
+				dummy = raw_input("Account type [SILVER/PREMIUM] : ")
 				if dummy.upper() == "PREMIUM":
 					account_type = Bank.accountType.PREMIUM
 				else:
@@ -32,21 +36,22 @@ class Client(Ice.Application):
 				manager.removeAccount(accountID)
 			elif answer_line.lower() == "balance" :
 				account_id = raw_input("Account ID : ")
-				account = Bank.AccountPrx.checkedCast(self.communicator().stringToProxy("account/" + str(accountID) + connection_line))
+				account = Bank.AccountPrx.checkedCast(self.communicator().stringToProxy("account/" + str(account_id) + connection_line))
 				print(account.getBalance())
 			elif answer_line.lower() == "account number" :
 				account_id = raw_input("Account ID : ")
-				account = Bank.AccountPrx.checkedCast(self.communicator().stringToProxy("account/" + str(accountID) + connection_line))
+				account = Bank.AccountPrx.checkedCast(self.communicator().stringToProxy("account/" + str(account_id) + connection_line))
 				print(account.getAccountNumber())
 			elif answer_line.lower() == "transfer" :
 				account_id_1 = raw_input("Account ID : ")
-				account_1 = Bank.AccountPrx.checkedCast(self.communicator().stringToProxy("account/" + str(accountID) + connection_line))
+				account_1 = Bank.AccountPrx.checkedCast(self.communicator().stringToProxy("account/" + str(account_id_1) + connection_line))
 				account_id_2 = raw_input("Recipient Account ID : ")
+				account_2 = Bank.AccountPrx.checkedCast(self.communicator().stringToProxy("account/" + str(account_id_2) + connection_line))
 				amount = raw_input("Amount : ")
-				account_1.transfer(account_id_2, int(amount))
+				account_1.transfer(account_2.getAccountNumber(), int(amount))
 			elif answer_line.lower() == "calculate loan" :
 				account_id = raw_input("Account ID : ")
-				account = Bank.AccountPrx.checkedCast(self.communicator().stringToProxy("account/" + str(accountID) + connection_line))
+				account = Bank.AccountPrx.checkedCast(self.communicator().stringToProxy("account/" + str(account_id) + connection_line))
 				amount = raw_input("Amount : ")
 				currency = raw_input("Currency : ")
 				if currency == "PLN":

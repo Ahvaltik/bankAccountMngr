@@ -13,6 +13,7 @@ import Ice.IntHolder;
 public class PremiumAccountImpl extends _PremiumAccountDisp {
 
 	private AccountData account;
+	@SuppressWarnings("unused")
 	private String accountNumber;
 
 	public PremiumAccountImpl(String value) {

@@ -44,11 +44,12 @@ public class SerializationService {
 		List<String> accountNames = new LinkedList<String>();
 		File folder = new File("serializedAccounts");
 		File[] accountFileList = folder.listFiles();
-		for (File accountFile : accountFileList) {
-			if (accountFile.isFile()) {
-				accountNames.add(accountFile.getName());
+		if(accountFileList != null)
+			for (File accountFile : accountFileList) {
+				if (accountFile.isFile()) {
+					accountNames.add(accountFile.getName());
+				}
 			}
-		}
 		return accountNames;
 	}
 
@@ -56,14 +57,15 @@ public class SerializationService {
 		int maxAccountNumber = 0;
 		File folder = new File("serializedAccounts");
 		File[] accountFileList = folder.listFiles();
-		for (File accountFile : accountFileList) {
-			if (accountFile.isFile()) {
-				if (Integer.parseInt(accountFile.getName())>= maxAccountNumber){
-					maxAccountNumber = Integer.parseInt(accountFile.getName());
-					maxAccountNumber++;
+		if(accountFileList != null)
+			for (File accountFile : accountFileList) {
+				if (accountFile.isFile()) {
+					if (Integer.parseInt(accountFile.getName())>= maxAccountNumber){
+						maxAccountNumber = Integer.parseInt(accountFile.getName());
+						maxAccountNumber++;
+					}
 				}
 			}
-		}
 		return maxAccountNumber;
 	}
 

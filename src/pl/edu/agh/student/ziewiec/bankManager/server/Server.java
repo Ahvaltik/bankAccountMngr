@@ -1,5 +1,7 @@
 package pl.edu.agh.student.ziewiec.bankManager.server;
 
+import Ice.Object;
+
 
 public class Server {
 
@@ -7,8 +9,8 @@ public class Server {
 		Ice.Communicator communicator = null;
 		try{
 		communicator = Ice.Util.initialize(args);
-		
-		Ice.ObjectAdapter objectAdapter = communicator.createObjectAdapter("Adapter");
+
+		Ice.ObjectAdapter objectAdapter = communicator.createObjectAdapter("Adapter11");
 		
 		//NewsServerPrx financialNews = NewsServerPrxHelper.checkedCast(communicator.propertyToProxy("FinancialNews").ice_twoway().ice_timeout(1).ice_secure(false));
 		
@@ -20,13 +22,13 @@ public class Server {
 		Ice.Identity bankManagerIdentity = new Ice.Identity();
 		bankManagerIdentity.category = "bankManager";
 		bankManagerIdentity.name = "bankManager";
-		objectAdapter.add(bankManager, bankManagerIdentity);
+		objectAdapter.add((Object) bankManager, bankManagerIdentity);
 		
 		objectAdapter.activate();
 		
 		communicator.waitForShutdown();
 		} catch(Exception e){
-			
+			e.printStackTrace();
 		} finally {
 			if(communicator!=null){
 				communicator.destroy();

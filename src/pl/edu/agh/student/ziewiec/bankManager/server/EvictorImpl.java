@@ -3,6 +3,7 @@ package pl.edu.agh.student.ziewiec.bankManager.server;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
+
 import Ice.Current;
 import Ice.Identity;
 import Ice.LocalObjectHolder;
@@ -13,7 +14,8 @@ import Ice.UserException;
 public class EvictorImpl implements ServantLocator {
 	private class EvictorImplMapEntry {
 		Ice.Object servant;
-        java.lang.Object cookie;
+        @SuppressWarnings("unused")
+		java.lang.Object cookie;
         java.util.Iterator<Identity> queuePos;
         int useCount;
 	}
